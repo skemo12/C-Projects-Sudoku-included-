@@ -1,0 +1,79 @@
+Tema1 PC -- Paunoiu Darius Alexandru -- 312CD -- Readme
+
+    --- Task 1 ---
+
+1.1 Pentru rezolvarea taskurilor de la 1.1 s-au cate folosit o simpla formula,
+care rezolva problema, folosirea 1ULL este echivalentul declarii unei variabile
+de tip unsigned long long egala cu 1.
+
+1.2 Pentru rezolvarea taskurilor de la 1.2 s-a folosit poarte nand_gate care 
+era deja declarata in cod, prin multiple apeluri la aceasta poarta. Pentru a 
+obtine negatul unei variabile a, se poate apela un nand_gate(a,a).
+
+1.3 Pentru rezolvarea sumatorului ripple_carry_adder, s-a definit functia
+full_adder care aduna 3 biti, dintre care unul este un carry, si encifreaza
+rezultatul sub forma Bit1Bit0 in variabila res , unde Bit1 este suma, iar 
+Bit2 este carry out-ul. Ripple_carry_adder face apeluri la full_adder pentru a 
+calcula suma a 2a numere, adunand fiecare bit din cele 2 numere pe rand.
+
+    --- Task 2 ---
+
+    Pentru rezolvarea Task-ului 2 se vor folosit apeluri la functiile 
+send_squanch([variabila]) si recv_squanch(), ce trimit si primesc o variabila,
+si sunt predefinite in biblioteca "util_comm.h".
+
+2.1 Pentru rezolvarea acestor taskuri am folosit vectori, in functia
+send_byte_message vectorul character[] memoreaza numerele corespunzatoare
+literelor R I C K din alfabet, A=1 si Z=26. Pentru descrifarea mesajelor
+la functia recv_byte_message s-a initializat un vector, al carui fiecare indice
+corespunde literei din alfabet, dupa cum s-a encifrat. Funtia comm_byte primeste 
+un caracter codificat si il trimite inapoi de 2 ori, repetand procesul de 10 ori.
+
+2.2 Pentru rezolvarea acestor functii s-au folosit metode similare cu cele de 
+la 2.1, doar ca acum se vor trimite mesaje intregi, iar acolo unde este cazul 
+se codifica cum este specificat in enunt.
+
+2.3 Pentru rezolvarea send_squanch2, se vor parcurge primii 4 biti din
+fiecare caracter, codificanduse in varibiala res pe pozitiile impare bitii 
+caracterului 2, iar pe pozitiile pare bitii caracterului 1. Pentru functia
+recv_squanch2 , caracterele de pe pozitiile pare din cvor fi encifrata in partea
+dreapta a varibilei res, iar caraterele de pe pozitii impare din c vor fi 
+codificate in partea stanga a variabilei res, adica pe bitii i+1;
+
+    --- Task 3 ---
+
+Pentru task-ul 3 o se vor folosi foarte mult de masti.
+O succesiune de n biti de 1 se poate obtine prin operatie ((1<<n)-1).
+Pentru a verifica biti de pe pozitia i,i+n ale lui V se vor folosi operatiile:
+mask=1<<n;
+mask=mask-1;
+if ( (V>>i) & mask==mask)
+
+3.1 Pentru rezolvarea acestui task, se vor folosi mastile pentru a indentifica 
+biti necesari. Pentru functia decrypt_spell, din moment ce inversa functiei XOR
+este tot XOR, rezultatul va fi egal cu spell_encrypted ^ key.
+
+3.2 Pentru rezolvarea acestui task, se vor parcurge bitii variabilei enemy, 
+memorand intr-o variabila numarul de biti activi. Encifrarea tipului de sabia 
+se va face prin shiftari. Solutia ecuatiei Value ^ (Enemy & (1 - Enemy)) = 0 
+se deduce stiind ca inversa functiei XOR este XOR. Asadar Value va fi egal cu
+(Enemy & (1 - Enemy)) ^ 0 .
+
+3.3 Pentru rezolvarea functiei trial_of_the_grasses, facand niste deductii 
+logice pentru valoare unui bit i din cocktail se pot deduce valorile bitilor i
+din antibodies_high si antibodies_low pentru a rezolva sistemul de ecutatii. 
+Daca bitul i din cocktail este 0, atunci bitii din antibodies_high si 
+antibodies_low de pe pozitia i trebuie sa fie 0. Daca bitul i din cocktail 
+este 1, atunci bitul i din antibodies_high trebuie sa fie 1, iar bitul i din
+antibodies_low trebuie sa fie 0. Asadar, indiferent de valoare lui cocktail,
+antibodies_low este 0.
+    Pentru functia trial_of_forrest_eyes se considera padurea default padurea
+Caed, aceasta nu avand un anume pattern. Se verifica pe rand fiecare padurea,
+schimband variabilei padurei atunci cand conditiile sunt indeplinite. Pentru 
+padurea Brokilon se vor face 2 verificari, una pentru grupuri de 4 copaci si
+una pentru niciun copac.
+    Pentru functia trial_of_the_dreams, se va parcuge variabila map bit cu bit,
+retinand in 2 variabile poz1 si poz2 poztiile celor 2 biti activi. Rezultatul 
+functiei este egal cu diferenta dintre poz2 si poz1.
+
+

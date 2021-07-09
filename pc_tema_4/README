@@ -1,0 +1,69 @@
+    Tema 4 PC -- Paunoiu Darius Alexandru -- 312CD -- Readme
+
+    Pentru rezolvarea temei am definit 3 functii inafara de cele din task,
+functia de alocareChar, care alocare un char in memorie, difModul, care 
+calculeaza diferenta in modul a 2 numere, si fromChartoEnum, care transforma
+un char intr-un numar int, corespondent valorii din enum. Pentru fiecare 
+verificare de alocare s-a folosit exit(101). Asadar 101 este codul de iesire
+conform unei alocari esuate.
+
+    -- Task 1 --
+    Pentru task 1 am alocat 2 matrice dinamic, una in care am scris matricea cu
+elemente de forma ij, si matricea output care este matricea rotata. Apoi am 
+am alocat dinamic un char, pentru a face conversie din int in char, si apoi
+am castat la void* si am returnat rezultatul.
+
+    -- Task 2 --
+    Pentru acest task m-am folosit de strtok pentru a desparti vectorul dupa
+caracterul '_', fiecare element fiind apoi convertit in int si adaugat in suma,
+aceeasta fiind apoi convertita in char si returnata.
+
+    -- Task 3 --
+    Pentru acest task pur si simplu se executa un if pentru a vedea ce 
+operatiune trebuie facuta, si apoi intr-un for se executa acest lucru, 
+apoi se face conversia la sir de caractere.
+
+    -- Task 4 --
+    In task4 se acolo memorie pentru un player, iar pentru fiecare camp al unui
+player ce trebuie declarat dinamic este folosita constasta MAX_LEN_STR_ATR.
+Pentru campurile de tip char se foloseste functia alocareChar (unde se si face
+si verificarea pentru ele). Pentru struct ul player se face o verificare
+dedicata.De asemenea se declara dinamic dimensiune pentru un joc si pentru
+campul nume,folosindu-se dimensiunea MAX_LEN_STR_ATR si functia alocareChar. 
+Pentru struct ul game se face o verificare dedicata. Tot in functia allocPlayer
+se initializeaza campul alive cu 1.
+
+    -- Task 5 -- 
+    Functia ReadGame apeleaza allocGame() pentru a declara un joc. Apoi citeste
+datele de intrare si initializeaza dinamic fiecare jucator prin apel la functia
+ReadPlayer. Aceasta din urma face apel la allocPlayer pentru a aloca spatiu
+pentru un player, declara dinamic spatiu pentru pointerul locations in functie
+de cate locatii exista. Functia initializeaza indexoflocations cu 0, orice 
+player plecand de la acea pozitie si atribuie rolul necesar.
+
+    -- Task 6 --
+    In WriteGame este o insuire de fprintf-uri, care scriu in outputFile, iar 
+pentru fiecare player se apeleaza WritePlayer. WritePlayer are strutura
+similara, multe fprintf-uri. Pentru rolul unui jucator se face convesie din
+enum in char cu functia fromEnumtoString, predefinita.
+
+    -- Task 7 --
+    Aceasta functie verifica daca killerul poate sa ucida pe cineva, pentru
+fiecare player verificandu-se poziitile corespunzatoare lui indexoflocations.
+Se face apel la difModul pentru calculul distantei. La final se afiseaza
+mesajul corespunzator rezultatului cautarii.
+
+    -- Task 8 --
+    Functia din acest task pur si simplu parcurge un ciclu de joc, fiecare
+jucator mergand pe pozitia urmatoare daca este in viata si rezolvand task-ul
+lui in functie de rol. Pentru ca un jucator sa faca un task se apeleaza
+Abilities[role](input), unde role este un numar de 0 la 3 corespunzator
+game->playeri->playerRole.
+
+    -- Task 9 --
+    Functia FreeGame, elibereaza memoria fiecarui jucator prin apel la
+FreePlayer, aceasta din urma eliberand campurile name, color, hat, si 
+locations, apoi eliberandu-se playerul in sine. Dupa aceasta, se
+elibereaza memoria pentru pointerul crewmates, pentru impostor cu un singur
+apel la FreePlayer, memorie pentru pointerul impostor in sine, memoria pentru
+numele jocului si memorie pentru joc in sine.

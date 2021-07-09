@@ -1,0 +1,75 @@
+void task5 (char gameboard[15][15])
+{
+    char usedWords[20][20], bonusSeq1[50], bonusSeq2[50];
+    int player1, player2,punctaj=0;
+    int coord1, coord2, dir,ind=0;
+    int n,indiceFinal,coord1Final,coord2Final,dirFinal,i=0;
+    int coordx[20],coordy[20],direction[20];
+    int max=0;
+
+    citireInit(bonusSeq1,bonusSeq2,&n);
+    
+    citireBoard(n,coordx,coordy,direction,usedWords,gameboard);
+
+    
+    for(int i=0; i<n; i++)
+    {
+        punctaj=0;
+        punctaj=calcPunctajBonus(coordx[i],coordy[i],direction[i],bonusSeq1,bonusSeq2,usedWords[i]);
+
+
+        if ((i+1)%2==1)
+        {
+            player1+=punctaj;
+        }
+        else
+        {
+            player2+=punctaj;
+        }
+        
+    }
+
+
+    while(ind<100 && i<100)
+    {
+        cautareCuvant(&coord1,&coord2,&dir,&ind,n,
+                      usedWords,gameboard);
+
+        
+
+        punctaj=calcPunctajBonus(coord1,coord2,dir,bonusSeq1,bonusSeq2,words[ind]);
+
+        printf("%s  %d \n\n",words[ind],punctaj);
+       
+        if (punctaj>max)
+        {
+            indiceFinal=ind;
+            coord1Final=coord1;
+            coord2Final=coord2;
+            dirFinal=dir;
+            max=punctaj;
+        }
+        ind++;
+        
+        i++;
+
+    }
+
+    if(max+player2>=player1)
+    {
+        adaugareCuvant(coord1Final,coord2Final,dirFinal,words[indiceFinal],gameboard);
+        print_board(gameboard);
+        printf("\n\n %s",words[indiceFinal]);
+    }
+
+    else
+    {
+        printf("Fail!");
+    }
+    
+
+
+
+
+
+}

@@ -1,0 +1,65 @@
+    Tema 3 PC -- Paunoiu Darius Alexandru -- 312CD -- Readme
+    
+   --- Exit codes ---
+404 = alocare esuata 
+122 = numar incorect de argurmente
+
+    --- Keypoints ---
+Am considerat ca fiecare numar din table de sudoku este impartit in 7 puncte
+cheie. Similar displayelor ce afisau cifre de tip vechi. 
+      
+   __ __ l1 __ __
+   |            |
+l4 |            |  l6
+   |-----l2-----|
+   |            |
+l5 |            |  l7
+   |_ _ _l3 _ _ |
+
+Cu ajutorul acestor puncte cheie, putem introduce si recunoaste orice cifra
+
+    --- cJSON ---
+    Am ales sa folosesc bibliotesca cJSON pentru a nu avea problema cauzate
+de alte biblioteci care pareau a fi mai usoare, sau sa intervin peste probleme
+care nu se puteau rezolva prin o alta biblioteca.
+
+    --- Detalii despre cod ---
+    Am modularizat codul foarte mult, definind multe functii. Majoritatea 
+matricelor si vectorilor sunt alocati dinamic, mai putin cei ce au o dimensiune
+constanta, mica si sunt folositi doar in interior unei functii, nevand rost sa 
+alocam dinamin acest caz. Toate functiile definite fie au nume explicit, fie
+au un comentariu care descriu ceea ce fac, fie chiar ambele. Task-urile fac 
+apel la multe functii, asa ca o sa scriu sumar ce face fiecare functie. Unele
+linii de declarare sunt despartite in 2 pentru a nu atinge coloana 80.
+
+    --- Task 1 ---
+    Task-ul 1 este rezolvat in functia createBMP, care face apel la multe alte
+functii. WriteBits scrie elementele dintr-un vector in format clasic BMP. Adica
+prima linie din matrice este ultima linie din BMP.
+
+    --- Task 2 ---
+    Similar task 1, este rezolvat in createBMP2, care face apel la WriteBits2.
+WriteBits2 scrie elementele dintr-un vector in format BMP dar inverseaza
+imaginea din fiecare subpatrat pentru a repara greseala lui Emperor.
+
+    --- Task 3 ---
+    Task-ul 3 nu lucreaza cu o tot array-ul, doar cu punctele cheie, acestea
+fiind suficiente pentru recunoasterea cifrelor, asadar deciderea corectitudinii
+jocului.
+
+    --- Task 4 ---
+    Task-ul 4 separa problema de completare in 2 subprobleme. Fiecare element
+are o complexitate de completare, complexitatea fiind data de minimul dintre
+elementele necompletate pe linia sa si elementele necompletate pe coloana sa.
+Task 4 mai intai, pentru fiecare element cu complexitate 1 (adica este 
+singurul element necompletat fie pe linia fie pe coloana sa) completeaza 
+spatiul gol cu unicul element ce poate fi pus. Apoi cu apel la functia
+Backtracking genereaza solutie pentru restul elementelor ce nu au complexitate
+1.
+
+    --- Bonus ---
+    Din pacate din lipsa de timp nu am reusit sa rezolv si bonusul. Voiam sa 
+folosesc initial functia de Backtracking, dar matricile din bonus sunt foarte
+necompletate, iar generarea unei solutii dureaza foarte mult, functia mea de
+Backtracking nefiind foarte optimizata si eficienta pentru o asemenea
+complexitate a tablelor. (complexitate > 10)
